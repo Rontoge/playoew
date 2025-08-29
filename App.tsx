@@ -1,13 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import "./global.css";
+import RootNavigator from './navigation/RootNavigator';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text className='text-red-400'>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+      <RootNavigator/>
   );
 }
 
