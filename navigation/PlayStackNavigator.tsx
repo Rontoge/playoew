@@ -12,7 +12,7 @@ const Stack = createNativeStackNavigator();
 
 const PlayStackNavigator = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="PlayHome" component={PlayScreen} />
     </Stack.Navigator>
   );

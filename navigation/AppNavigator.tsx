@@ -6,7 +6,7 @@ import PlayStackNavigator from "./PlayStackNavigator";
 import BookStackNavigator from "./BookStackNavigator";
 import ProfileScreen from "../screens/ProfileScreen";
 import { RouteProp } from "@react-navigation/native";
-import Ionicons from '@EXPO/vector-icons/Ionicons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 type TabParamList = {
   Home: undefined;
@@ -25,7 +25,7 @@ const AppNavigator: React.FC = () => {
         route: RouteProp<TabParamList, keyof TabParamList>;
         }) => ({
             tabBarIcon :({color, size}:{color: string, size: number})=>{
-                let iconName: keyof typeof Ionicons.glyphMap = "home";
+                let iconName: string = "home";
 
                 
                 if(route.name === 'Home') iconName = 'home';

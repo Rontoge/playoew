@@ -25,7 +25,7 @@ const Stack = createNativeStackNavigator();
 
 const BookStackNavigator = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="BookHome" component={BookScreen} />
     </Stack.Navigator>
   );
