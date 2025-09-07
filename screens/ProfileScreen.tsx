@@ -26,11 +26,11 @@ const ProfileScreen = () => {
   return (
     <SafeAreaView className="flex-1 bg-gray-100">
       <ScrollView>
-        <View className="bg-[#294461] p-4 pb-8">
+        <View className="bg-[#294461] p-4 pb-4">
           <View className="flex-row items-center justify-between">
             <View className="flex-row items-center">
               <Image
-                className="w-16 h-16 rounded-2xl mr-4"
+                className="w-16 h-16 rounded-full mr-4"
                 source={{
                   uri: "https://yt3.ggpht.com/yti/ANjgQV-f08FSrHuPiTks--f7yhL7dyX78mH2Hk4jowvMTRCnEpg=s88-c-k-c0x00ffffff-no-rj",
                 }}
