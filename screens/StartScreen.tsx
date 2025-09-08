@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import React, { useEffect, useRef } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -132,15 +132,15 @@ const StartScreen = () => {
           const user = users[index % users.length];
           return (
             <Marker key={index} coordinate={point}>
-              <View className="">
+              <View className="items-center justify-center">
                 <Image
-                  className="w-[70px] h-[70px] rounded-full mb-2"
+                  className="w-[70px] h-[70px] rounded-full "
                   source={{ uri: user?.image }}
                   resizeMode="cover"
                 />
               </View>
               <View className="bg-white px-3 py-2 rounded-md mt-1 ">
-                <Text className="text-sm font-medium text-center text-black">
+                <Text className="text-sm font-medium text-center ">
                   {user?.description}
                 </Text>
               </View>
@@ -148,6 +148,24 @@ const StartScreen = () => {
           );
         })}
       </MapView>
+
+      <View className="items-center mt-10 justify-center">
+        <Text className="text-xl font-semibold text-center w-1/2">
+          Find Player in Ypur neighbhourhood
+        </Text>
+        <Text className="text-gray-500 text-base mt-5">
+          Just Like You Did as a kid
+        </Text>
+      </View>
+
+      <Pressable className=" mt-10 items-center justify-center ">
+        <Text className="text-base text-gray-500">Already have an account? Log in</Text>
+      </Pressable>
+
+
+      <View>
+        
+      </View>
     </SafeAreaView>
   );
 };
