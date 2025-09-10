@@ -3,6 +3,11 @@ import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AppNavigator from './AppNavigator';
 import StartScreen from '../screens/StartScreen';
+import SignInScreen from '../screens/SignInScreen';
+import SignUpScreen from '../screens/SignUpScreen';
+import NameScreen from '../screens/NameScreen';
+import SelectImage from '../screens/SelectImage';
+import GameSelection from '../screens/GameSelection';
 
 
 const RootNavigator = () => {
@@ -15,8 +20,14 @@ const RootNavigator = () => {
       ) : (
           <Stack.Group> 
             <Stack.Screen name ="Start" component={StartScreen}   />
+            <Stack.Screen name ="SignIn" component={SignInScreen}   />
+            <Stack.Screen name ="SignUp" component={SignUpScreen}   />
+            <Stack.Screen name ="Name" component={NameScreen}   />
+            <Stack.Screen name ="Image" component={SelectImage}   />
+            <Stack.Screen name ="GameSelection" component={GameSelection}   />
+
           </Stack.Group>
-      )}
+      )}   
     </Stack.Navigator>
   )
 }

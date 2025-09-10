@@ -117,6 +117,8 @@ const StartScreen = () => {
     }
   }, [circularPoints]); // <-- Added circularPoints to the dependency array
   return (
+
+    <>
     <SafeAreaView className="flex-1 bg-white ">
       <MapView
         ref={mapView}
@@ -158,7 +160,7 @@ const StartScreen = () => {
         </Text>
       </View>
 
-      <Pressable className=" mt-10 items-center justify-center ">
+      <Pressable onPress={() => navigation.navigate("SignIn")} className=" mt-10 items-center justify-center ">
         <Text className="text-base text-gray-500">Already have an account? Log in</Text>
       </Pressable>
 
@@ -167,6 +169,15 @@ const StartScreen = () => {
         
       </View>
     </SafeAreaView>
+
+    <View className="bg-white p-6">
+      <Pressable className="bg-green-500 py-3 rounded-lg">
+        <Text className="text-center text-white text-lg font-semibold">
+          Ready Set Go
+        </Text>
+      </Pressable>
+    </View>
+    </>
   );
 };
 
