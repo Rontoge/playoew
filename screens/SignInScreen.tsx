@@ -1,4 +1,12 @@
-import { StyleSheet, Text, View, Image, TextInput, Pressable } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TextInput,
+  Pressable,
+  ActivityIndicator,
+} from "react-native";
 import React, { useState } from "react";
 
 const SignInScreen = () => {
@@ -54,11 +62,25 @@ const SignInScreen = () => {
           borderRadius: 24,
         }}
       />
-      {error&&<Text className="text-red-500 font-medium">{error}</Text>}
+      {error && <Text className="text-red-500 font-medium">{error}</Text>}
 
-      <Pressable>
-        
+      <Pressable className="w-full bg-green-600 py-3 rounded-xl flex-row justify-center items-center">
+        {loading ? (
+          <ActivityIndicator
+            size={"small"}
+            color={"#ffffff"}
+            className="mr-2"
+          />
+        ) : (
+          <Text className="text-white text-center font-semibold text-md">Sign In</Text>
+        )}
       </Pressable>
+
+      <View  className="flex-row items-center w-full my-3" >
+        <View className="flex-1 h-[1px] bg-gray-300"/>
+        <Text className="mx-2 text-gray-200">OR</Text>
+        <View  className="flex-1 h-[1px] bg-gray-300"/>
+      </View>
     </View>
   );
 };

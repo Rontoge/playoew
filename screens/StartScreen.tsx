@@ -171,7 +171,7 @@ const StartScreen = () => {
     </SafeAreaView>
 
     <View className="bg-white p-6">
-      <Pressable className="bg-green-500 py-3 rounded-lg">
+      <Pressable onPress={() => navigation.navigate("Name")} className="bg-green-500 py-3 rounded-lg">
         <Text className="text-center text-white text-lg font-semibold">
           Ready Set Go
         </Text>
