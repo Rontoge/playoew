@@ -106,7 +106,9 @@ const SelectImage = () => {
 
 
         <View className="absolute bottom-6 w-full items-center">
-          <Pressable className={`w-4/5 h-12 rounded-xl items-center justify-center ${
+          <Pressable 
+          onPress ={() => navigation.navigate("GameSelection" as never)}
+          className={`w-4/5 h-12 rounded-xl items-center justify-center ${
             image ? "bg-green-600" : "bg-green-300"
           }
             `}>

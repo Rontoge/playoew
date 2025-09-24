@@ -160,7 +160,7 @@ const StartScreen = () => {
         </Text>
       </View>
 
-      <Pressable onPress={() => navigation.navigate("SignIn")} className=" mt-10 items-center justify-center ">
+      <Pressable onPress={() => navigation.navigate("SignIn" as never)} className=" mt-10 items-center justify-center ">
         <Text className="text-base text-gray-500">Already have an account? Log in</Text>
       </Pressable>
 
@@ -171,7 +171,7 @@ const StartScreen = () => {
     </SafeAreaView>
 
     <View className="bg-white p-6">
-      <Pressable onPress={() => navigation.navigate("Name")} className="bg-green-500 py-3 rounded-lg">
+      <Pressable onPress={() => navigation.navigate("Name" as never)} className="bg-green-500 py-3 rounded-lg">
         <Text className="text-center text-white text-lg font-semibold">
           Ready Set Go
         </Text>

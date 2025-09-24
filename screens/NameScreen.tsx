@@ -9,7 +9,7 @@ const NameScreen = () => {
   const [lastName, setLastName] = useState("");
   const handleNext = () => {
     // if (! firstName.trim()) return;
-    navigation.navigate("Image")
+    navigation.navigate("Image" as never)
   }
 
   return (
