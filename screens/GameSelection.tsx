@@ -50,6 +50,11 @@ const toogleSelection = (id: string) =>{
   setLocalSelected((prev) =>prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id])
 }
 
+
+const handleDebut = () =>{
+  navigation.navigate("SignUp" as never)
+}
+
 const renderItem =  ({item} :any) =>{
   const isSelected = localSelected.includes(item.id) ;// You can manage selected state as per your requirement
 
@@ -93,7 +98,7 @@ const renderItem =  ({item} :any) =>{
         <TouchableOpacity 
         className={`py-4 rounded-xl ${localSelected.length > 0 ? "bg-green-600" :"bg-slate-600"} `}
         disabled={localSelected.length === 0}
-        // onPress={handleDebut}
+        onPress={handleDebut}
         >
           <Text className="text-white text-center font-bold text-base">
             {localSelected.length >0 ? 'Make MY debut' : 'Select at least one sport'}

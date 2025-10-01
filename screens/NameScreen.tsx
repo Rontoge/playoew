@@ -1,14 +1,19 @@
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { useUserOnboarding } from "../contexts/UserOnboardingContext";
 
 const NameScreen = () => {
   const navigation = useNavigation();
+  const [firstName, setFirst] = useState("");
+  const [lastName, setLast] = useState("");
+  const { setFirstName, setLastName } = useUserOnboarding();
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
   const handleNext = () => {
-    // if (! firstName.trim()) return;
+    if (! firstName.trim()) return;
+    setFirstName(firstName.trim());
+    setLastName(lastName.trim());
+
     navigation.navigate("Image" as never)
   }
 
@@ -20,7 +25,7 @@ const NameScreen = () => {
       <TextInput
         placeholder="Enter First Name"
         value={firstName}
-        onChangeText={setFirstName}
+        onChangeText={setFirst}
         className="border border-gray-300 rounded-xl px-4 py-3 mb-4"
       />
 
@@ -29,7 +34,7 @@ const NameScreen = () => {
       <TextInput
         placeholder="Enter Last Name"
         value={lastName}
-        onChangeText={setLastName}
+        onChangeText={setLast}
         className="border border-gray-300 rounded-xl px-4 py-3 mb-4"
       />
 

@@ -50,8 +50,9 @@ export const useUserOnboarding = () => {
   if (!ctx) {
     throw new Error(
       "useUserOnboarding must be used within a UserOnboardingProvider"
-    );
+    )
 
-    return ctx;
   }
+      return ctx;
+
 };

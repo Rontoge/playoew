@@ -12,6 +12,7 @@ import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { MotiView } from "moti";
 import { cssInterop } from "nativewind";
+import { useUserOnboarding } from "../contexts/UserOnboardingContext";
 
 const StyledYourComponent = cssInterop(TextInput, {
   className: "style",
@@ -22,7 +23,8 @@ interface imageItem {
 }
 const SelectImage = () => {
   const navigation = useNavigation();
-  const [image, setImage] = useState("");
+  // const [image, setImage] = useState("");
+  const { image, setImage } = useUserOnboarding();
   const [focused, setFocused] = useState(false);
 
   const images: imageItem[] = [
