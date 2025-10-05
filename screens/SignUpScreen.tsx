@@ -8,6 +8,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import React, { useState } from "react";
+import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 import { useSignUp } from "@clerk/clerk-expo";
 import { useUserOnboarding } from "../contexts/UserOnboardingContext";
@@ -29,6 +30,8 @@ const SignUpScreen = () => {
     image,
   } = useUserOnboarding();
 
+  console.log("Selected sports on load:", selected);
+
   const onSignUpPress = async () => {
     if (!isLoaded || loading) return;
     setLoading(true);
@@ -49,44 +52,57 @@ const SignUpScreen = () => {
     }
   };
 
-
   const onVerifyPress = async () => {
     if (!isLoaded || loading) return;
-    setLoading(true); 
+    setLoading(true);
 
     try {
-      
-      const signUpAttempt =await signUp.attemptEmailAddressVerification({code});
-      if(signUpAttempt.status === "complete"){
+      const signUpAttempt = await signUp.attemptEmailAddressVerification({
+        code,
+      });
+      if (signUpAttempt.status === "complete") {
         try {
-          const payload ={
-            clerkId : signUpAttempt.createdUserId,
-            email : signUpAttempt?.emailAddress,
+          const payload = {
+            clerkId: signUpAttempt.createdUserId,
+            email: signUpAttempt?.emailAddress,
             firstName,
             lastName,
             image,
-            sports : selected, // i was here you need to fix logic before you continue
+            sports: selected, // i was here you need to fix logic before you continue OK
+          };
+
+          const res = await axios.post(
+            "http://localhost:3001/api/users/create-or-update",
+            payload
+          );
+          if (res.data.success) {
+            await setActive({ session: signUpAttempt.createdSessionId });
+            navigation.reset({
+              index: 0,
+              routes: [{ name: "Home" as never}], /// vverify issue navigation
+            });
           }
         } catch (err: any) {
           console.log("Error during verification: ", err);
         }
       }
-
-
-
     } catch (err: any) {
       console.log("Error during verification: ", err);
       setError(err?.errors?.[0]?.message);
-    }finally{
+    } finally {
       setLoading(false);
     }
   };
 
   if (pendingVerification) {
     return (
-      <View>
-        <Text> A Verification code has been sent to {emailAddress}</Text>
-        <Text>verify You Email</Text>
+      <View className="flex-1 justify-center px-6 bg-white">
+        <Text className="text-center mb-2 text-xl">
+          {" "}
+          A Verification code has been sent to{" "}
+          <Text className="text-blue-600">{emailAddress}</Text>
+        </Text>
+        <Text className="text-center mt-2 text-base">verify You Email</Text>
 
         <TextInput
           placeholder="Enter Verification Code"
@@ -111,7 +127,7 @@ const SignUpScreen = () => {
         <TouchableOpacity
           onPress={onVerifyPress}
           disabled={loading}
-          className="bg-black py-y rounded-xl flex-row justify-center items-center"
+          className="bg-black py-4 rounded-xl flex-row justify-center items-center"
         >
           {loading && (
             <ActivityIndicator size="small" color="#00ff00" className="mr-2" />

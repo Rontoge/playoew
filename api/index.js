@@ -14,8 +14,9 @@ mongoose
   .then(() => console.log("DB Connected"))
   .catch((err) => console.error("DB Connection Error: "));
 
+const userRoutes = require("./routes/user.routes");
+app.use("/api/users", userRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
-

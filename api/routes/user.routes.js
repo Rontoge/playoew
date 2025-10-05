@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/user.model');
+const User = require('../models/user');
 //pk_test_dG91Y2hlZC1kaW5nby03Ni5jbGVyay5hY2NvdW50cy5kZXYk
 
 
@@ -29,4 +29,6 @@ router.post('create-or-update',async (req,res)=>{
         console.error("Error in creating or updating:", err);
         res.status(500).json({error:"Server error"});
     }
-})
+});
+  
+module.exports = router

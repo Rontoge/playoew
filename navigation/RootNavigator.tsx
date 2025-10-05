@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AppNavigator from './AppNavigator';
@@ -8,11 +8,19 @@ import SignUpScreen from '../screens/SignUpScreen';
 import NameScreen from '../screens/NameScreen';
 import SelectImage from '../screens/SelectImage';
 import GameSelection from '../screens/GameSelection';
+import { useAuth } from '@clerk/clerk-expo';
 
 
 const RootNavigator = () => {
-      const isSignedIn = false; // Replace with your actual sign-in logic
+      const {isLoaded, isSignedIn} = useAuth()
       const Stack = createNativeStackNavigator();
+      if(!isLoaded) {
+        return (
+          <View  style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+            <ActivityIndicator size="large" color="#0000ff" />
+          </View>
+        )
+      }
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
       {isSignedIn ? (
