@@ -25,9 +25,8 @@ const AppNavigator: React.FC = () => {
         route: RouteProp<TabParamList, keyof TabParamList>;
         }) => ({
             tabBarIcon :({color, size}:{color: string, size: number})=>{
-                let iconName: string = "home";
+                let iconName: keyof typeof Ionicons.glyphMap = "home";
 
-                
                 if(route.name === 'Home') iconName = 'home';
                 else if(route.name === 'Play') iconName = 'person';
                 else if(route.name === 'Book') iconName = 'calendar';

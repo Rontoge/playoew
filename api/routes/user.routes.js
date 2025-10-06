@@ -4,7 +4,7 @@ const User = require('../models/user');
 //pk_test_dG91Y2hlZC1kaW5nby03Ni5jbGVyay5hY2NvdW50cy5kZXYk
 
 
-router.post('create-or-update',async (req,res)=>{
+router.post('/create-or-update',async (req,res)=>{
     const{clerkId,firstName,lastName,email, image,sports,provider} = req.body;
     if(!clerkId || !firstName || !lastName || !email|| !image){
         return res.status(400).json({error:"Missing required fields"});

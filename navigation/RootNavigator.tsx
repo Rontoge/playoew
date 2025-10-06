@@ -1,5 +1,5 @@
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AppNavigator from './AppNavigator';
 import StartScreen from '../screens/StartScreen';
@@ -9,11 +9,18 @@ import NameScreen from '../screens/NameScreen';
 import SelectImage from '../screens/SelectImage';
 import GameSelection from '../screens/GameSelection';
 import { useAuth } from '@clerk/clerk-expo';
+import { useNavigation } from '@react-navigation/native';
 
 
 const RootNavigator = () => {
       const {isLoaded, isSignedIn} = useAuth()
+        const navigation = useNavigation(); // ✅ get navigation instance
+
       const Stack = createNativeStackNavigator();
+
+      useEffect(() => {
+    console.log('RootNavigator: isLoaded=', isLoaded, 'isSignedIn=', isSignedIn);
+  }, [isLoaded, isSignedIn]);
       if(!isLoaded) {
         return (
           <View  style={{flex:1, justifyContent:'center', alignItems:'center'}}>

@@ -72,15 +72,13 @@ const SignUpScreen = () => {
           };
 
           const res = await axios.post(
-            "http://localhost:3001/api/users/create-or-update",
+            "http://192.168.100.120:3001/api/users/create-or-update",
             payload
           );
           if (res.data.success) {
             await setActive({ session: signUpAttempt.createdSessionId });
-            navigation.reset({
-              index: 0,
-              routes: [{ name: "Home" as never}], /// vverify issue navigation
-            });
+            console.log("Session set, isSignedIn should be true");
+           
           }
         } catch (err: any) {
           console.log("Error during verification: ", err);

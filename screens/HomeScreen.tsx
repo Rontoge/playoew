@@ -11,6 +11,7 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Bell, MessageCircle } from "lucide-react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useClerk } from "@clerk/clerk-expo";
 
 const Homescreen = () => {
   const navigation = useNavigation();
@@ -45,6 +46,17 @@ const Homescreen = () => {
     },
   ];
 
+  const {signOut} = useClerk()
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+    } catch (err) {
+      console.log("Error signing out: ", err);
+      
+    }
+  }
+
   return (
     <SafeAreaView className="flex-1 bg-white">
       <View className="px-4 py-3 bg-white flex-row justify between items-center border-b border-gray-200">
@@ -55,7 +67,7 @@ const Homescreen = () => {
         <View className="flex-row items-center gap-4 ml-2 pt-2">
           <MessageCircle size={20} stroke="#000000" />
           <Bell size={20} stroke="#000000" />
-          <Pressable>
+          <Pressable onPress={handleSignOut}>
             <Image
               className="w-8 h-8 rounded-full"
               source={{
