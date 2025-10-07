@@ -78,6 +78,7 @@ const SignUpScreen = () => {
           if (res.data.success) {
             await setActive({ session: signUpAttempt.createdSessionId });
             console.log("Session set, isSignedIn should be true");
+            navigation.reset({ index: 0, routes: [{ name: "Home" as never }] }); // Navigate to Home and reset stack
            
           }
         } catch (err: any) {
