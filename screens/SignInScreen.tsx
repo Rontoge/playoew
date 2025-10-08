@@ -8,12 +8,41 @@ import {
   ActivityIndicator,
 } from "react-native";
 import React, { useState } from "react";
+import { useSignIn } from "@clerk/clerk-expo";
+import { set } from "mongoose";
+import { G } from "react-native-svg";
+import GoogleSignIn from "../components/GoogleSignIn";
 
 const SignInScreen = () => {
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const {signIn , setActive, isLoaded} = useSignIn();
+  const onSignInPress = async () => {
+      if(!isLoaded || loading) return;
+      setLoading(true);
+      setError("");
+
+      try {
+        const signInAttempt = await signIn.create({
+          identifier: emailAddress,
+          password,
+        });
+
+        if (signInAttempt.status === "complete") {
+          await setActive({ session: signInAttempt.createdSessionId });
+        }else{
+          console.error("Sign in not complete");
+        }
+        
+      } catch (err :any) {
+        console.error("SIGN iN ERROR", error);
+        setError(err?.errors?.[0]?.message );
+      }finally{
+        setLoading(false);
+      }
+  }
 
   return (
     <View className="flex-1 justify-center items-center bg-white px-6">
@@ -64,7 +93,7 @@ const SignInScreen = () => {
       />
       {error && <Text className="text-red-500 font-medium">{error}</Text>}
 
-      <Pressable className="w-full bg-green-600 py-3 rounded-xl flex-row justify-center items-center">
+      <Pressable onPress={onSignInPress} className="w-full bg-green-600 py-3 rounded-xl flex-row justify-center items-center">
         {loading ? (
           <ActivityIndicator
             size={"small"}
@@ -81,6 +110,8 @@ const SignInScreen = () => {
         <Text className="mx-2 text-gray-200">OR</Text>
         <View  className="flex-1 h-[1px] bg-gray-300"/>
       </View>
+
+      <GoogleSignIn />
     </View>
   );
 };
