@@ -17,6 +17,11 @@ mongoose
 const userRoutes = require("./routes/user.routes");
 app.use("/api/users", userRoutes);
 
+const gameRoutes = require("./routes/game.routes");
+app.use("/api/games", gameRoutes);
+
+
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
