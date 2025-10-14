@@ -27,6 +27,12 @@ const PlayScreen = () => {
 
   const navigation = useNavigation();
 
+
+
+  const handleCreateGame = () => {
+    navigation.navigate("Create" as never);
+  }
+
   return (
     <SafeAreaView className="flex-1 bg-gray-50">
       <View className="bg-[#1f2937] pb-3">
@@ -111,7 +117,7 @@ const PlayScreen = () => {
       </View>
 
       <View className="bg-white px-4 py-3 flex-row justify-between items-center border-b border-gray-200">
-        <TouchableOpacity className="bg-slate-100 px-4 py-2 rounded-xl">
+        <TouchableOpacity onPress={handleCreateGame} className="bg-slate-100 px-4 py-2 rounded-xl">
           <Text className="text-base font-semibold text-gray-700">+ create game</Text>
         </TouchableOpacity>
 
